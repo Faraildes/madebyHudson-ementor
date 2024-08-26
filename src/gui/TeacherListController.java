@@ -84,8 +84,8 @@ public class TeacherListController implements Initializable {
 	}
 
 	public void updateTableView1() {
-		if (service == null)
-			throw new IllegalStateException("Service was null");
+		if (service == null) 
+			throw new IllegalStateException("Service was null");		
 		List<Teacher> list = service.findAll();
 		obsList = FXCollections.observableArrayList(list);
 		tableViewTeacher.setItems(obsList);
