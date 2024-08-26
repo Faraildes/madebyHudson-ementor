@@ -17,50 +17,50 @@ import javafx.stage.Stage;
 import model.entities.Teacher;
 import model.services.TeacherService;
 
-public class TeacherListController implements Initializable{
-	
+public class TeacherListController implements Initializable {
+
 	private TeacherService service;
-	
+
 	@FXML
 	private TableView<Teacher> tableViewTeacher;
-	
+
 	@FXML
 	private TableColumn<Teacher, Integer> tableColumnId;
-	
+
 	@FXML
 	private TableColumn<Teacher, String> tableColumnName;
-	
+
 	@FXML
 	private TableColumn<Teacher, String> tableColumnAdmissionDate;
-	
+
 	@FXML
 	private TableColumn<Teacher, String> tableColumnCpf;
-	
+
 	@FXML
 	private TableColumn<Teacher, String> tableColumnPhone;
-	
+
 	@FXML
 	private TableColumn<Teacher, Double> tableColumnSalary;
-	
+
 	@FXML
 	private Button btNew;
-	
+
 	private ObservableList<Teacher> obsList;
-	
+
 	@FXML
 	public void onBtNewAction() {
 		System.out.println("onBtNewAction");
 	}
-	
+
 	public void setTeacherService(TeacherService service) {
 		this.service = service;
 	}
-		
+
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		initializeNodes();	
+		initializeNodes();
 	}
-	
+
 	private void initializeNodes() {
 		tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -68,16 +68,16 @@ public class TeacherListController implements Initializable{
 		tableColumnCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
 		tableColumnPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
 		tableColumnSalary.setCellValueFactory(new PropertyValueFactory<>("salary"));
-		
+
 		Stage stage = (Stage) Main.getMainScene().getWindow();
-		tableViewTeacher.prefHeightProperty().bind(stage.heightProperty());		
+		tableViewTeacher.prefHeightProperty().bind(stage.heightProperty());
 	}
-	
+
 	public void updateTableView1() {
-		if(service == null)
+		if (service == null)
 			throw new IllegalStateException("Service was null");
 		List<Teacher> list = service.findAll();
 		obsList = FXCollections.observableArrayList(list);
-		tableViewTeacher.setItems(obsList);	
-	}	
+		tableViewTeacher.setItems(obsList);
+	}
 }
